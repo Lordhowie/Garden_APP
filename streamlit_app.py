@@ -1,7 +1,6 @@
 import streamlit as st
 import datetime
 import random
-from streamlit_calendar import calendar
 import plotly.graph_objs as go
 
 # Set page config
@@ -112,12 +111,9 @@ with col2:
     st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("Watering Schedule")
-events = [
-    {"title": "Water Zone 1", "start": "2023-09-01T06:00:00"},
-    {"title": "Water Zone 2", "start": "2023-09-03T06:00:00"},
-    {"title": "Fertilize", "start": "2023-09-05T07:00:00"}
-]
-calendar(events=events, options={"initialView": "timeGridWeek"})
+schedule_date = st.date_input("Select date for watering schedule")
+schedule_time = st.time_input("Select time for watering")
+st.write(f"Scheduled watering for: {schedule_date} at {schedule_time}")
 
 st.subheader("System Log")
 with st.expander("View Recent Log Entries"):
